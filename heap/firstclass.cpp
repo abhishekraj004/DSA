@@ -39,6 +39,39 @@ class Heap{
        cout<<arr[i]<<" "; 
     }
     }
+
+    int deletenode(){
+        int answer=arr[1];
+        // replacement
+        arr[1]=arr[size];
+        // last element ko delete uski original postion se delte kar dho
+        size--;
+        int index=1;
+        while(index<size){
+            int leftindex=2*index;
+            int rightindex=2*index+1;
+            // find out sab se bada kon hai out of three 
+            int largestindex=index;
+            // check left child;
+            if(leftindex<=size&& arr[largestindex]<arr[leftindex] ){
+                largestindex=leftindex;
+            }
+            if(rightindex<=size && arr[largestindex]<arr[rightindex]){
+                largestindex=rightindex;
+            }
+
+            // if no change
+            if(index==largestindex){
+                break;
+            }
+            else{
+                swap(arr[index],arr[largestindex]);
+                index=largestindex;
+            }
+        }
+        return answer;
+        
+    }
 };
 
 
